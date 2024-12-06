@@ -19,7 +19,7 @@ function EditModal({ blog, onClose }) {
         category: blog.category,
         image: blog.image || null, // Ensure image is properly set for preview
       });
-      setImagePreview(blog.image ? `http://localhost:3002${blog.image}` : ""); // Set existing image preview if available
+      setImagePreview(blog.image ? `https://mern-blog-blue-theta.vercel.app${blog.image}` : ""); // Set existing image preview if available
     }
   }, [blog]);
 
@@ -64,7 +64,7 @@ function EditModal({ blog, onClose }) {
 
     try {
       const response = await fetch(
-        `http://localhost:3002/api/update-blog/${blog._id}`,
+        `https://mern-blog-blue-theta.vercel.app/api/update-blog/${blog._id}`,
         {
           method: "PUT",
           body: updatedData,
