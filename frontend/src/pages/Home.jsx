@@ -32,7 +32,7 @@ function Home() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:3002/api/get-blogs");
+        const response = await fetch("http://echo-verse-one.vercel.app/api/get-blogs");
         const data = await response.json();
         if (data && data.blogs) {
           setBlogs(data.blogs);
@@ -146,7 +146,7 @@ function Home() {
               >
                 {blog.image ? (
                   <img
-                    src={`http://localhost:3002${blog.image}`} // Assuming your image URL follows this structure
+                    src={`http://echo-verse-one.vercel.app${blog.image}`} // Assuming your image URL follows this structure
                     alt={blog.title}
                     className="w-full h-48 object-cover"
                   />

@@ -42,7 +42,7 @@ function AddBlog() {
     formData.append('image', selectedImage); // Assuming the backend expects this field for image upload
 
     try {
-      const response = await fetch('http://localhost:3002/api/create-blog', {
+      const response = await fetch('http://echo-verse-one.vercel.app/api/create-blog', {
         method: 'POST',
         body: formData,
       });

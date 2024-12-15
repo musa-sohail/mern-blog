@@ -12,7 +12,7 @@ function ViewBlogs() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:3002/api/get-blogs');
+        const response = await fetch('http://echo-verse-one.vercel.app/api/get-blogs');
         const data = await response.json();
         if (data && data.blogs) {
           setBlogs(data.blogs);
@@ -35,7 +35,7 @@ function ViewBlogs() {
     const confirmation = window.confirm('Are you sure you want to delete this blog?');
     if (confirmation) {
       try {
-        const response = await fetch(`http://localhost:3002/api/delete-blog/${id}`, {
+        const response = await fetch(`http://echo-verse-one.vercel.app/api/delete-blog/${id}`, {
           method: 'DELETE',
         });
         if (response.ok) {
@@ -83,7 +83,7 @@ function ViewBlogs() {
                 <div className="w-full md:w-48 h-48 flex-shrink-0">
                   {blog.image ? (
                     <img
-                      src={`http://localhost:3002${blog.image}`}
+                      src={`http://echo-verse-one.vercel.app${blog.image}`}
                       alt={blog.title}
                       className="w-full h-full object-cover object-center rounded-md"
                     />
