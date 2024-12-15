@@ -28,11 +28,11 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
-
+  // const {REACT_APP_BACKEND_URL} = process.env;
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("https://mern-blog-blue-theta.vercel.app/api/get-blogs");
+        const response = await fetch("http://localhost:3002/api/get-blogs");
         const data = await response.json();
         if (data && data.blogs) {
           setBlogs(data.blogs);
@@ -42,9 +42,9 @@ function Home() {
         console.error("Error fetching blogs:", error);
       }
     };
+
     fetchBlogs();
   }, []);
-
   const filteredBlogs =
     selectedCategory === "all"
       ? blogs
@@ -72,7 +72,7 @@ function Home() {
           </div>
         </div>
       </nav>
-      
+
       {/* Hero */}
       <div className="relative pt-24 pb-16 sm:pt-32 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,7 +146,7 @@ function Home() {
               >
                 {blog.image ? (
                   <img
-                    src={`https://mern-blog-blue-theta.vercel.app${blog.image}`} // Assuming your image URL follows this structure
+                    src={`http://localhost:3002${blog.image}`} // Assuming your image URL follows this structure
                     alt={blog.title}
                     className="w-full h-48 object-cover"
                   />

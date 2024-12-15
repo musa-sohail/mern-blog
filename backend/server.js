@@ -2,17 +2,29 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-
 const multer = require('multer');
 require('dotenv').config();
 const connectDB = require('./config/db');
 const { createBlog, getAllBlogs, getBlogById, updateBlog, deleteBlog } = require('./controllers/blogController');
 
 const app = express();
+const allowedOrigins = [process.env.FRONTEND_URL];
 
+// Configure CORS options
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true); // Allow requests
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+  credentials: true, // Allow cookies if needed
+};
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use('/uploads', express.static('uploads')); // Serve static files
 // Ensure the uploads/images directory exists
 const uploadsDir = path.join(__dirname, 'uploads', 'images');

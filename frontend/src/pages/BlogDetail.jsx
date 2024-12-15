@@ -14,7 +14,7 @@ function BlogDetail() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`https://mern-blog-blue-theta.vercel.app/api/get-blog/${id}`);
+        const response = await fetch(`http://localhost:3002/api/get-blog/${id}`);
         const data = await response.json();
         if (data && data.blog) {
           setBlog(data.blog);
@@ -91,7 +91,7 @@ function BlogDetail() {
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6 }}
-              src={`https://mern-blog-blue-theta.vercel.app${blog.image}`}
+              src={`http://localhost:3002${blog.image}`}
               alt={blog.title}
               className="w-full h-full object-cover"
             />
